@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+{% include helper %}
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">{{currentPlugin.name}}</h1>
+        <p>{{currentPlugin.description}}</p>
+    </div>
+</div>
+
+
+{% for item in page.subnav %}
+    <a href="{{ item.url }}">{{ item.title }}</a>
+{% endfor %}

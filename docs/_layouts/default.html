@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 {% include head.html %}
-<body>
+<body data-spy="scroll" data-target="#navbar" data-offset="50">
 
 {% include header.html %}
 
-<main class="page-content" aria-label="Content">
-    <div class="wrapper">
-        {{ content }}
+<main class="page-content container-fluid" aria-label="Content">
+    <div class="row" id="scroll-spy">
+        <div class="col-2 side-navigation">
+            <ul class="list-group" style="position: absolute">
+                {% for item in page.nav %}
+                <li class="list-group-item">
+                    <a href="{{ item.url }}">{{ item.title }}</a>
+                    <ul class="list-group">
+                        {% for subNav in item.subNav %}
+                        <li class="list-group-item">
+                            <a href="{{ subNav.url }}">{{ subNav.title }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-10">
+            {{ content }}
+        </div>
     </div>
 </main>
 

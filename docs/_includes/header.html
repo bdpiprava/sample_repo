@@ -1,26 +1,35 @@
-<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
-    <button class="menu-icon" type="button" data-toggle></button>
-    <div class="title-bar-title">Menu</div>
-</div>
+{% include helper %}
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbar" aria-controls="navbar" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">
+        <img src="{{ '/assets/images/logo.svg' | relative_url }}" height="30" class="d-inline-block align-top" alt="">
+    </a>
 
-<div class="top-bar" id="example-menu">
-    <div class="top-bar-right">
-        <ul class="menu">
-            <li class="menu-text">Foundation Responsive Navbar</li>
-        </ul>
-    </div>
-    <div class="top-bar-left">
-        <ul class=" medium-horizontal vertical dropdown menu" data-responsive-menu="accordion medium-dropdown">
-            <li class="has-submenu ">
-                <a href="#">One</a>
-                <ul class="submenu menu vertical nested " data-submenu>
-                    <li><a href="#">One</a></li>
-                    <li><a href="#">Two</a></li>
-                    <li><a href="#">Three</a></li>
-                </ul>
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+            {% for item in page.nav %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="{{item.id}}" href="{{ item.url }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ item.title }}</a>
+                    <ul class="dropdown-menu" aria-labelledby="{{item.id}}">
+                        {% for subNav in item.subNav %}
+                        <li class="dropdown-item">
+                            <a href="{{ subNav.url }}">{{ subNav.title }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+            <li class="nav-item {% if url == page.url %}active{% endif %}">
+                <a class="nav-link" href="#">{{ title }}</a>
             </li>
-            <li><a href="#">Two</a></li>
-            <li><a href="#">Three</a></li>
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
     </div>
-</div>
+</nav>

@@ -1,1 +1,16 @@
-/*= require foundation
+.navbar {
+    background: #33364e;
+    color:      #fff !important;
+}
+
+.page-content {
+    position:   fixed;
+    top:        55px !important;
+    overflow-y: auto;
+    height:     90%;
+}
+
+.side-navigation {
+    border-right: 1px solid #ddd;
+    padding:      9px;
+}
