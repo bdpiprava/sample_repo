@@ -5,7 +5,4 @@
    2. Get a GoCD internal URL for plugin settings
        `$ echo "https://$(kubectl --namespace gocd get service gocd-app-gocd-server  -o jsonpath='{.spec.clusterIP}'):8154/go"`
    3. Get Cluster url `kubectl cluster-info`
-       
-       
-  
   
