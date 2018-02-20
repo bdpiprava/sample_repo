@@ -1,9 +1,10 @@
+
 # Install helm (OOTB)
   * helm install --name gocd-app --namespace gocd incubator/gocd
    1. Get the go-server ip using 
        `$ ip=$(kubectl get ingress gocd-app-gocd-server -o jsonpath="{.status.loadBalancer.ingress[0].ip}")` (put --namespace)
         
-       - [ ] Update it with --namespace gocd
+         - [ ] Update it with --namespace gocd
         
    2. Get a GoCD internal URL for plugin settings
        `$ echo "https://$(kubectl --namespace gocd get service gocd-app-gocd-server  -o jsonpath='{.spec.clusterIP}'):8154/go"`
