@@ -1,0 +1,17 @@
+pipelines:
+  yamlpipe1234:
+    group: simple
+    materials:
+      mygit1:  # this is the name of material
+        # says about type of material and url at once
+        git: https://github.com/adityasood/licensemgmt.git
+    stages:
+      - build: # name of stage
+          jobs:
+            build: # name of the job
+              tasks:
+               - exec: # indicates type of task
+                   command: /bin/bash
+                   arguments:
+                     - -c
+                     - "echo -e 'this is \ntheBestUse \nofOurplugin\n'>testFile.txt"
