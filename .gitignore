@@ -1,7 +1,5 @@
-docs/.bundle
-docs/_site
-docs/Gemfile.lock
-docs/bin
-sample_repo.iml
-.idea
-.bundle
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
