@@ -1,14 +1,9 @@
 ---
 name: "Run tests"
 description: "A workflow for running tests on pull requests and pushes to master"
-run-name: "${{ github.event.inputs.name }}"
 
 on:
   workflow_call:
-    inputs:
-      name:
-        required: true
-        type: string
 
 jobs:
   test:
@@ -28,6 +23,7 @@ jobs:
       - name: Process test results
         uses: robherley/go-test-action@v0
         with:
+          omit: pie
           fromJSONFile: ./gotest.json
 
   integration-tests:
@@ -47,4 +43,5 @@ jobs:
       - name: Process test results
         uses: robherley/go-test-action@v0
         with:
+          omit: pie
           fromJSONFile: ./gotest.json
