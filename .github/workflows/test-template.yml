@@ -1,0 +1,45 @@
+name: "Test template workflow"
+
+concurrency:
+  group: test-${{ github.head_ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  id-token: write
+
+on: workflow_dispatch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: list files
+      run: ls -al
+    - name: long running command
+      run: for i in {1..10}; do date && sleep 1; done
+    - name: create file
+      run: echo "example" > test.txt
+
+  integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: list files
+        run: ls -al
+      - name: long running command
+        run: for i in {1..10}; do date && sleep 1; done
+      - name: create file
+        run: echo "example" > integration-test.txt
+      - name: fail the job
+        run: .github/workflows/run.sh "${{github.run_id}}"
+
+  slack-notification:
+    name: Slack notification about job failure
+    if: ${{ failure() && github.ref == 'refs/heads/master' }}
+    runs-on: [ self-hosted, default ]
+    needs: [ test, integration-tests ]
+    steps:
+      - name: Slack notification
+        run: echo "Slack notification ${{ github.job }}"

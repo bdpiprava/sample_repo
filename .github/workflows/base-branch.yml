@@ -1,0 +1,17 @@
+name: "Base Branch Test"
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  test-workflow:
+    uses: .github/workflows/test-template.yml@latest
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [ test-workflow ]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Create release
+        run: echo "Creating release"
