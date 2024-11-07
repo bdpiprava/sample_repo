@@ -9,4 +9,4 @@ jobs:
   test-workflow:
     uses: ./.github/workflows/test-template.yml
     with:
-      name: "PR: Tests"
+      name: "PR"

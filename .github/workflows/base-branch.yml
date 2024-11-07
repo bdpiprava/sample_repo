@@ -9,7 +9,7 @@ jobs:
   test-workflow:
     uses: ./.github/workflows/test-template.yml
     with:
-      name: "Base: Tests"
+      name: "Base"
 
   slack-notification:
     runs-on: ubuntu-latest
