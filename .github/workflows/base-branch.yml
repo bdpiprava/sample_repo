@@ -6,7 +6,7 @@ on:
       - master
 
 extends:
-  - .github/workflows/test-workflow-template.yml
+  - .github/workflows/test.yml
 
 jobs:
   release:
