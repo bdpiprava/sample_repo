@@ -27,13 +27,13 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: list files
-        run: ls -al
+        run: env | grep "GITHUB"
       - name: long running command
         run: for i in {1..10}; do date && sleep 1; done
       - name: create file
         run: echo "example" > integration-test.txt
       - name: fail the job
-        run: .github/workflows/run.sh "${{github.run_id}}"
+        run: .github/workflows/run.sh "${{github.run_attempt}}"
 
   slack-notification:
     name: Slack notification about job failure
