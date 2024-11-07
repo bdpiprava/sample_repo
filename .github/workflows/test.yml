@@ -1,17 +1,14 @@
-name: "Test template workflow"
-description: "This is a template workflow for testing purposes"
-display-name: "Test workflow template"
-disabled: true
+---
+name: "Run tests"
+description: "A workflow for running tests on pull requests and pushes to master"
 
-concurrency:
-  group: test-${{ github.head_ref }}
-  cancel-in-progress: true
-
-permissions:
-  contents: read
-  id-token: write
-
-on: [ push, pull_request ]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   test:
