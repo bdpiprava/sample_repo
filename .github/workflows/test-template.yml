@@ -1,12 +1,14 @@
 ---
 name: "Run tests"
 description: "A workflow for running tests on pull requests and pushes to master"
+run-name: "${{ github.event.inputs.name }}"
 
 on:
-  pull_request:
-    branches:
-      - master
   workflow_call:
+    inputs:
+      name:
+        required: true
+        type: string
 
 jobs:
   test:
@@ -32,12 +34,3 @@ jobs:
         run: echo "example" > integration-test.txt
       - name: fail the job
         run: .github/workflows/run.sh "${{github.run_attempt}}"
-
-  slack-notification:
-    runs-on: ubuntu-latest
-    name: Slack notification about job failure
-    if: ${{ failure() && github.ref == 'refs/heads/master' }}
-    needs: [ test, integration-tests ]
-    steps:
-      - name: Slack notification
-        run: echo "Slack notification ${{ github.job }}"

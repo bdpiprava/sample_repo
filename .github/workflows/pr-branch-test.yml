@@ -1,0 +1,12 @@
+name: "PR Branch Test"
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test-workflow:
+    uses: ./.github/workflows/test-template.yml
+    with:
+      name: "PR: Tests"
