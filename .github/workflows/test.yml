@@ -3,9 +3,6 @@ name: "Run tests"
 description: "A workflow for running tests on pull requests and pushes to master"
 
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
