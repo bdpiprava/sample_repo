@@ -5,13 +5,13 @@ on:
     branches:
       - master
 
-extends:
-  - .github/workflows/test.yml
-
 jobs:
+  test-workflow:
+    uses: .github/workflows/test.yml
+
   release:
     runs-on: ubuntu-latest
-    needs: [ test, integration-tests ]
+    needs: [ test-workflow ]
     steps:
       - uses: actions/checkout@v1
       - name: Create release
