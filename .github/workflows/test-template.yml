@@ -1,4 +1,7 @@
 name: "Test template workflow"
+description: "This is a template workflow for testing purposes"
+display-name: "Test workflow template"
+disabled: true
 
 concurrency:
   group: test-${{ github.head_ref }}
@@ -8,19 +11,19 @@ permissions:
   contents: read
   id-token: write
 
-on: workflow_dispatch
+on: [ push, pull_request ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: list files
-      run: ls -al
-    - name: long running command
-      run: for i in {1..10}; do date && sleep 1; done
-    - name: create file
-      run: echo "example" > test.txt
+      - uses: actions/checkout@v1
+      - name: list files
+        run: ls -al
+      - name: long running command
+        run: for i in {1..10}; do date && sleep 1; done
+      - name: create file
+        run: echo "example" > test.txt
 
   integration-tests:
     runs-on: ubuntu-latest

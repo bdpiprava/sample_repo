@@ -6,7 +6,7 @@ on:
       - master
 jobs:
   test-workflow:
-    uses: .github/workflows/test-template.yml@latest
+    uses: .github/workflows/test-template.yml
 
   release:
     runs-on: ubuntu-latest
